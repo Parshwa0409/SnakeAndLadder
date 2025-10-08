@@ -5,6 +5,7 @@ public class Game {
     private Deque<Player> players;
     private final Board board;
     private final Dice dice;
+    private Player winner;
 
     public Game(Board board, Dice dice) {
         this.players = new ArrayDeque<>();
@@ -16,12 +17,11 @@ public class Game {
         players.forEach(player -> player.setCurrentPosition(0));
     }
 
-    public boolean addPlayer(Player player) {
+    public void addPlayer(Player player) {
         if (players.stream().anyMatch(p -> p.getInfo().equals(player.getInfo()))) {
-            return false;
+            return;
         }
         players.addLast(player);
-        return true;
     }
 
     public void startGame(){
@@ -34,7 +34,7 @@ public class Game {
 
         while(!gameWon){
             currentPlayer = players.removeFirst();
-            System.out.println(currentPlayer.getInfo() + "'s turn. Current position: " + currentPlayer.getCurrentPosition());
+            System.out.println(currentPlayer.getInfo() + "'s turn.\nCurrent position: " + currentPlayer.getCurrentPosition());
             int diceValue = rollDice();
             System.out.println(currentPlayer.getInfo() + " rolled a " + diceValue);
             int newPosition = board.getNextPosition(currentPlayer.getCurrentPosition(), diceValue);
@@ -44,11 +44,12 @@ public class Game {
                 currentPlayer.setCurrentPosition(newPosition);
                 System.out.println(currentPlayer.getInfo() + " moved to position " + newPosition);
             }
-            System.out.println("-----------------------------------");
+            System.out.println("-----------------------------------\n");
 
             if(isTheGameOver(currentPlayer)){
                 gameWon = true;
-                System.out.println(currentPlayer.getInfo() + " has won the game!");
+                winner = currentPlayer;
+                declareWinner();
             }else{
                 players.addLast(currentPlayer);
             }
@@ -62,5 +63,9 @@ public class Game {
 
     private boolean isTheGameOver(Player player){
         return player.getCurrentPosition() == board.getBoardSize();
+    }
+
+    private void declareWinner(){
+        System.out.println("Game Over! The winner is " + winner.getInfo());
     }
 }
