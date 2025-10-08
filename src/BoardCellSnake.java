@@ -1,18 +1,8 @@
-public class BoardCellSnake implements BoardCell{
-    public final int startPosition;
-    public final int endPosition;
-
+public class BoardCellSnake extends BoardCell{
     public BoardCellSnake(int startPosition, int endPosition) {
-        this.startPosition = startPosition;
-        this.endPosition = endPosition;
-    }
-
-    public int getStartPosition() {
-        return startPosition;
-    }
-
-    public int getEndPosition() {
-        System.out.println("Bitten by Snake ...");
-        return endPosition;
+       super(startPosition, endPosition);
+       if(startPosition <= endPosition) {
+           throw new IllegalArgumentException("Start position of snake must be greater than end position.");
+       }
     }
 }

@@ -1,18 +1,8 @@
-public class BoardCellLadder implements BoardCell{
-    public final int startPosition;
-    public final int endPosition;
-
+public class BoardCellLadder extends BoardCell{
     public BoardCellLadder(int startPosition, int endPosition) {
-        this.startPosition = startPosition;
-        this.endPosition = endPosition;
-    }
-
-    public int getStartPosition() {
-        return startPosition;
-    }
-
-    public int getEndPosition() {
-        System.out.println("Climbing Ladder ...");
-        return endPosition;
+       super(startPosition, endPosition);
+       if(startPosition >= endPosition) {
+           throw new IllegalArgumentException("Start position of ladder must be less than end position.");
+       }
     }
 }
