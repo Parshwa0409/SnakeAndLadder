@@ -3,11 +3,11 @@ import java.util.Map;
 
 public class Board {
     private final int size;
-    private final List<Map<Integer, BoardCell>> boardCellsList;
+    private final Map<Integer, BoardCell> boardCellsMap;
 
-    public Board(int size, List<Map<Integer, BoardCell>> boardCellsList) {
+    public Board(int size, Map<Integer, BoardCell> boardCellsList) {
         this.size = size;
-        this.boardCellsList = boardCellsList;
+        this.boardCellsMap = boardCellsList;
     }
 
     public int getBoardSize() {
@@ -21,10 +21,6 @@ public class Board {
             return currentPosition;
         }
 
-        return boardCellsList.stream()
-                .filter( map -> map.containsKey((newPosition)))
-                .findFirst()
-                .map(map -> map.get(newPosition).getEndPosition())
-                .get();
+        return boardCellsMap.get(newPosition).getEndPosition();
     }
 }
