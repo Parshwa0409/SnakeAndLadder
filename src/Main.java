@@ -9,26 +9,25 @@ public class Main {
         Player playerTwo = new Player("Player-2");
         Player playerThree = new Player("Player-3");
 
-        List<Map<Integer, BoardCell>> boardCellsList = List.of(
-                Map.of(1, new BoardCellRegular(1)),
-                Map.of(2, new BoardCellRegular(2)),
-                Map.of(3, new BoardCellRegular(3)),
-                Map.of(4, new BoardCellRegular(4)),
-                Map.of(5, new BoardCellSnake(5, 3)),
-                Map.of(6, new BoardCellRegular(6)),
-                Map.of(7, new BoardCellLadder(7, 9)),
-                Map.of(8, new BoardCellRegular(8)),
-                Map.of(9, new BoardCellRegular(9)),
-                Map.of(10, new BoardCellRegular(10)),
-                Map.of(11, new BoardCellRegular(11)),
-                Map.of(12, new BoardCellRegular(12)),
-                Map.of(13, new BoardCellRegular(13)),
-                Map.of(14, new BoardCellRegular(14)),
-                Map.of(15, new BoardCellRegular(15)),
-                Map.of(16, new BoardCellRegular(16))
+        Map<Integer, BoardCell> boardCellMap = Map.ofEntries(
+                Map.entry(1, new BoardCellRegular(1)),
+                Map.entry(2, new BoardCellRegular(2)),
+                Map.entry(3, new BoardCellRegular(3)),
+                Map.entry(4, new BoardCellRegular(4)),
+                Map.entry(5, new BoardCellRegular(5)),
+                Map.entry(6, new BoardCellRegular(6)),
+                Map.entry(7, new BoardCellSnake(7, 4)),
+                Map.entry(8, new BoardCellRegular(8)),
+                Map.entry(9, new BoardCellLadder(9, 14)),
+                Map.entry(10, new BoardCellRegular(10)),
+                Map.entry(11, new BoardCellRegular(11)),
+                Map.entry(12, new BoardCellRegular(12)),
+                Map.entry(13, new BoardCellSnake(13, 8)),
+                Map.entry(14, new BoardCellRegular(14)),
+                Map.entry(15, new BoardCellLadder(15, 16))
         );
 
-        Board board = new Board(4, boardCellsList);
+        Board board = new Board(4, boardCellMap);
         Dice dice = new Dice(1, 4, 2);
 
         Game game = new Game(board, dice);
