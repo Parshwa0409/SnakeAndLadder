@@ -7,11 +7,12 @@ abstract public class BoardCell {
         this.endPosition = endPosition;
     }
 
-    int getStartPosition(){
-        return startPosition;
-    }
-
     int getEndPosition() {
+        if(startPosition < endPosition){
+            System.out.println("Yay! Climbed a ladder from " + startPosition + " to " + endPosition);
+        } else if(startPosition > endPosition){
+            System.out.println("Oops! Bitten by a snake from " + startPosition + " to " + endPosition);
+        }
         return endPosition;
     }
 }
